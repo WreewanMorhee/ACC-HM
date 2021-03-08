@@ -1,16 +1,16 @@
+@import 'general.scss';
+
 .card {
   margin-top: 30px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 12px;
   width: 800px;
+  @include shadow;
 }
 
 .card:hover {
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.05);
-  transform: translate(-2px, -2px);
+  @include hover-shadow;
 }
 
 .left-box {
@@ -42,7 +42,7 @@
   line-height: 1.3;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $phone-width) {
   .card {
     width: 85vw;
   }

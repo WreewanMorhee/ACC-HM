@@ -1,10 +1,12 @@
+@import 'general.scss';
+
 .big-box {
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #fffcf7;
+  background-color: $bg-orange;
 }
 .wrapper {
   width: 1100px;
@@ -60,7 +62,7 @@
 }
 
 a.site-link {
-  color: #e09358;
+  color: $orange;
 }
 
 .img-slider {
@@ -84,7 +86,7 @@ a.site-link {
   justify-content: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $phone-width) {
   .wrapper {
     width: 90vw;
     padding: 35px 0;
