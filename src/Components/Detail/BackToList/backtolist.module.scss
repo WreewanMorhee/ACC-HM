@@ -1,5 +1,6 @@
 @import 'general.scss';
 
+.close,
 .close[aria-label][data-balloon-pos] {
   width: 45px;
   height: 45px;
@@ -20,7 +21,7 @@
   @include hover-shadow;
 }
 
-@media (max-width: $phone-width) {
+@media (max-width: $pad-width) {
   .close {
     top: unset;
     bottom: 150px;

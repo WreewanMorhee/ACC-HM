@@ -2,10 +2,17 @@ import classNames from 'classnames'
 import styles from './prevnext.module.scss'
 
 const PrevAndNext = ({ type, click_func }) => {
+  const balloon_data =
+    window.innerWidth <= 1080
+      ? {}
+      : {
+          'aria-label': type === 'prev' ? '上一個' : '下一個',
+          'data-balloon-pos': 'left',
+        }
+
   return (
     <div
-      aria-label={type === 'prev' ? '上一個' : '下一個'}
-      data-balloon-pos="left"
+      {...balloon_data}
       onClick={click_func}
       className={classNames(styles['btn'], {
         [styles['prev']]: type === 'prev',
