@@ -10,12 +10,13 @@ const initialState = {
 
 export default handleActions(
   {
-    ['Set_Attraction_List']: (
-      state,
-      { payload: { attraction_list, loading } }
-    ) => ({
+    ['Set_Attraction_List']: (state, { payload: { attraction_list } }) => ({
       ...state,
       attraction_list,
+    }),
+
+    ['Set_Attraction_Loading']: (state, { payload: { loading } }) => ({
+      ...state,
       loading,
     }),
   },
