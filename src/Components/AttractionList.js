@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import styles from './list.module.css'
+import styles from './list.module.scss'
 import { get_attraction_list } from './getAttractionList'
 import AttrcationCard from './AttrCard/AttrcationCard'
 import { Route } from 'react-router'

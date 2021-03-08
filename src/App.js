@@ -3,7 +3,7 @@ import {
   set_attraction_loading,
 } from 'actions/attractionlist'
 import './reset.css'
-import styles from './app.module.css'
+import styles from './app.module.scss'
 import AttractionListContainer from './Containers/AttractionListContainer'
 import { Redirect, Route, Switch } from 'react-router'
 import { connect } from 'react-redux'

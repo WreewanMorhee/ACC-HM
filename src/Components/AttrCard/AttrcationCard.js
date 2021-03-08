@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router'
-import styles from './attractioncard.module.css'
+import styles from './attractioncard.module.scss'
 
 const AttrcationCard = ({ images, name, address, id }) => {
   const history = useHistory()
