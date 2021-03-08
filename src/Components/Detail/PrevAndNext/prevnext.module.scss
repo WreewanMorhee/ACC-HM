@@ -1,6 +1,6 @@
 @import 'general.scss';
 
-.btn {
+.btn[aria-label][data-balloon-pos] {
   width: 45px;
   height: 45px;
   border-radius: 99em;
@@ -20,15 +20,15 @@
   @include hover-shadow;
 }
 
-.btn.prev {
+.btn.prev[aria-label][data-balloon-pos] {
   top: 105px;
 }
-.btn.next {
+.btn.next[aria-label][data-balloon-pos] {
   top: 175px;
 }
 
 @media (max-width: $phone-width) {
-  .btn {
+  .btn[aria-label][data-balloon-pos] {
     top: unset;
     right: 30px;
   }
@@ -36,11 +36,11 @@
   .btn:hover {
   }
 
-  .btn.prev {
+  .btn.prev[aria-label][data-balloon-pos] {
     top: unset;
     bottom: 90px;
   }
-  .btn.next {
+  .btn.next[aria-label][data-balloon-pos] {
     top: unset;
     bottom: 30px;
   }

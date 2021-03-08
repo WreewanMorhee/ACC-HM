@@ -1,6 +1,6 @@
 @import 'general.scss';
 
-.close {
+.close[aria-label][data-balloon-pos] {
   width: 45px;
   height: 45px;
   border-radius: 99em;
