@@ -16,8 +16,13 @@ const BackToList = () => {
     }
   }, [])
   return (
-    <div onClick={clickToBackToList} className={styles['close']}>
-      <i className="fas fa-home"></i>
+    <div
+      aria-label="關閉"
+      data-balloon-pos="left"
+      onClick={clickToBackToList}
+      className={styles['close']}
+    >
+      <i className="fas fa-times"></i>
     </div>
   )
 }
