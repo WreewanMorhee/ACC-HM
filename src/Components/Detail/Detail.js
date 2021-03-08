@@ -58,7 +58,7 @@ const Detail = ({ attraction_list = [] }) => {
           <Slider {...settings}>
             {images.map(({ src }) => (
               <div className={styles['img-box']}>
-                <img src={`${src}/1024x768`} alt={'views picture'} />
+                <img src={`${src}/1024x768`} alt={'views point'} />
               </div>
             ))}
           </Slider>

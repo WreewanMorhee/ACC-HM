@@ -29,10 +29,18 @@
 @media (max-width: 768px) {
   .btn {
     top: unset;
-    bottom: 30px;
     right: 30px;
   }
 
   .btn:hover {
+  }
+
+  .btn.prev {
+    top: unset;
+    bottom: 90px;
+  }
+  .btn.next {
+    top: unset;
+    bottom: 30px;
   }
 }

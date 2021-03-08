@@ -22,7 +22,7 @@
 @media (max-width: 768px) {
   .close {
     top: unset;
-    bottom: 30px;
+    bottom: 150px;
     right: 30px;
   }
 
