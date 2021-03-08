@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useHistory } from 'react-router'
-import styles from './backtolist.module.css'
+import styles from './backtolist.module.scss'
 
 const BackToList = () => {
   const history = useHistory()

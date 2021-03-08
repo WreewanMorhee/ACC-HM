@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import styles from './prevnext.module.css'
+import styles from './prevnext.module.scss'
 
 const PrevAndNext = ({ type, click_func }) => {
   return (
