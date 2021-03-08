@@ -1,0 +1,12 @@
+.list {
+  flex-direction: column;
+  margin-left: 20vw;
+}
+
+@media (max-width: 768px) {
+  .list {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 25px;
+  }
+}
