@@ -8,6 +8,14 @@ const BackToList = () => {
     history.push('/accu/')
   }
 
+  const balloon_data =
+    window.innerWidth <= 1080
+      ? {}
+      : {
+          'aria-label': '關閉',
+          'data-balloon-pos': 'left',
+        }
+
   useEffect(() => {
     document.body.style.overflow = 'hidden'
 
@@ -17,8 +25,7 @@ const BackToList = () => {
   }, [])
   return (
     <div
-      aria-label="關閉"
-      data-balloon-pos="left"
+      {...balloon_data}
       onClick={clickToBackToList}
       className={styles['close']}
     >

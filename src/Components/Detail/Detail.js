@@ -79,7 +79,7 @@ const Detail = ({ attraction_list = [] }) => {
         {(tel || fax || email) && (
           <div className={styles['info-section']}>
             <div className={styles['title']}>
-              <i class="far fa-id-card"></i> &nbsp; 聯絡我們
+              <i className="far fa-id-card"></i> &nbsp; 聯絡我們
             </div>
             {tel && (
               <div className={styles['info-bar']}>
@@ -126,7 +126,7 @@ const Detail = ({ attraction_list = [] }) => {
         {(official_site || facebook || url) && (
           <div className={styles['info-section']}>
             <div className={styles['title']}>
-              <i class="fas fa-globe"></i> &nbsp; 相關網站
+              <i className="fas fa-globe"></i> &nbsp; 相關網站
             </div>
             {official_site && (
               <div className={styles['info-bar']}>
@@ -170,7 +170,7 @@ const Detail = ({ attraction_list = [] }) => {
         {ticket && (
           <div className={styles['info-section']}>
             <div className={styles['title']}>
-              <i class="fas fa-ticket-alt"></i> &nbsp; 門票
+              <i className="fas fa-ticket-alt"></i> &nbsp; 門票
             </div>
             <div className={classNames(styles['info-bar'], styles['ticket'])}>
               {ticket}
@@ -181,7 +181,7 @@ const Detail = ({ attraction_list = [] }) => {
         {remind && (
           <div className={styles['info-section']}>
             <div className={styles['title']}>
-              <i class="fas fa-bell"></i> &nbsp; 提醒
+              <i className="fas fa-bell"></i> &nbsp; 提醒
             </div>
             <div className={classNames(styles['info-bar'], styles['remind'])}>
               {remind}
@@ -192,7 +192,7 @@ const Detail = ({ attraction_list = [] }) => {
         {!!(category && category.length) && (
           <div className={styles['info-section']}>
             <div className={styles['title']}>
-              <i class="fas fa-quote-right"></i> &nbsp; 類型
+              <i className="fas fa-quote-right"></i> &nbsp; 類型
             </div>
             <div className={styles['info-bar']}>
               {category.map(({ name }) => `#${name} `)}
@@ -203,7 +203,7 @@ const Detail = ({ attraction_list = [] }) => {
         {!!(service && service.length) && (
           <div className={styles['info-section']}>
             <div className={styles['title']}>
-              <i class="fas fa-concierge-bell"></i> &nbsp; 提供之服務
+              <i className="fas fa-concierge-bell"></i> &nbsp; 提供之服務
             </div>
             <div className={styles['info-bar']}>
               {service.map(({ name }) => `#${name} `)}
@@ -214,7 +214,7 @@ const Detail = ({ attraction_list = [] }) => {
         {!!(friendly && friendly.length) && (
           <div className={styles['info-section']}>
             <div className={styles['title']}>
-              <i class="fas fa-user-friends"></i> &nbsp; 友善措施
+              <i className="fas fa-user-friends"></i> &nbsp; 友善措施
             </div>
             <div className={styles['info-bar']}>
               {friendly.map(({ name }) => `#${name} `)}

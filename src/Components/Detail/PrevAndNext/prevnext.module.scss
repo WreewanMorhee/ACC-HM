@@ -1,5 +1,6 @@
 @import 'general.scss';
 
+.btn,
 .btn[aria-label][data-balloon-pos] {
   width: 45px;
   height: 45px;
@@ -27,8 +28,8 @@
   top: 175px;
 }
 
-@media (max-width: $phone-width) {
-  .btn[aria-label][data-balloon-pos] {
+@media (max-width: $pad-width) {
+  .btn {
     top: unset;
     right: 30px;
   }
@@ -36,11 +37,11 @@
   .btn:hover {
   }
 
-  .btn.prev[aria-label][data-balloon-pos] {
+  .btn.prev {
     top: unset;
     bottom: 90px;
   }
-  .btn.next[aria-label][data-balloon-pos] {
+  .btn.next {
     top: unset;
     bottom: 30px;
   }
