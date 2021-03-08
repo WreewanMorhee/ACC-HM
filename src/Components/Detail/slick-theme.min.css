@@ -106,7 +106,7 @@
   border-radius: 99em;
 }
 .slick-dots li.slick-active {
-  background: black;
+  background: #2a384f;
 }
 .slick-dots li button {
   font-size: 0;
@@ -140,9 +140,9 @@
   content: '•';
   text-align: center;
   opacity: 0.25;
-  color: #000;
+  color: #2a384f;
 }
 .slick-dots li.slick-active button:before {
   opacity: 0.75;
-  color: #000;
+  color: #2a384f;
 } /*# sourceMappingURL=slick-theme.min.css.map */
