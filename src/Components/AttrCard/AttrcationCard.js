@@ -1,7 +1,12 @@
+import { useHistory } from 'react-router'
 import styles from './attractioncard.module.css'
 
 const AttrcationCard = ({ images, name, address, id }) => {
-  const clickToDetailPage = () => {}
+  const history = useHistory()
+  const clickToDetailPage = () => {
+    history.push(`/accu/${id}`)
+  }
+
   return (
     <div onClick={clickToDetailPage} className={styles['card']}>
       <div className={styles['left-box']}>
