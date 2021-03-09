@@ -62,8 +62,8 @@ const Detail = ({ attraction_list = [], is_end }) => {
       <div ref={wrapperRef} className={styles['wrapper']}>
         <div className={styles['img-slider']}>
           <Slider {...settings}>
-            {images.map(({ src }) => (
-              <div className={styles['img-box']}>
+            {images.map(({ src }, index) => (
+              <div key={`${src}-${index + 1}`} className={styles['img-box']}>
                 <img src={`${src}/1024x768`} alt={'views point'} />
               </div>
             ))}
