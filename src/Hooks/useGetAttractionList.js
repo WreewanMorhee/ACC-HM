@@ -1,76 +1,53 @@
-import { set_attraction_list } from 'actions/attractionlist'
+import { useContext } from 'react'
+import { ReactReduxContext, useDispatch } from 'react-redux'
 
-// var myHeaders = new Headers()
-// myHeaders.append('accept', 'application/json')
-// myHeaders.append(
-//   'Cookie',
-//   '__cfduid=dbe9d9fcf93820205e3060af4b97c0bff1615146570'
-// )
-
-// var requestOptions = {
-//   method: 'GET',
-//   headers: myHeaders,
-//   redirect: 'follow',
-// }
-
-let _attr_list = []
 const get_list_url = (page = 1) =>
-  `https://cors-anywhere.herokuapp.com/https://www.travel.taipei/open-api/zh-tw/Attractions/All?page=${page}`
-const fetch_body = {
-  headers: {
-    accept: 'application/json',
-  },
-}
+  !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+    ? `http://localhost:5000/air?page=${page}`
+    : `http://localhost:5000/air?page=5`
+
 const page_size = 30
 let max_fetch_time
-let fetch_time = 0
 
-const handle_fetch_time = total => {
-  if (!fetch_time) max_fetch_time = Math.ceil(total / page_size)
-  fetch_time += 1
+const get_page_list = fetch_url => {
+  return new Promise(res => {
+    fetch(fetch_url)
+      .then(res => res.json())
+      .then(result => {
+        res(result)
+      })
+  })
 }
 
-export const useGetAttractionList = () => {
-  //   const loop_fetch = fetch_url => {
-  //     fetch(fetch_url, fetch_body)
-  //       .then(res => res.json())
-  //       .then(({ total, data }) => {
-  //         _attr_list = [..._attr_list, ...data]
+export const useGetAttractionList = async () => {
+  const { store } = useContext(ReactReduxContext)
+  const dispatch = useDispatch()
+  const {
+    attractionList: { attraction_list, should_fetch, loading },
+  } = store.getState()
 
-  //         handle_fetch_time(total)
+  if (!should_fetch || loading) return
 
-  //         if (fetch_time === max_fetch_time) {
-  //           fetch_ending()
-  //         } else {
-  //           return loop_fetch(get_list_url(fetch_time + 1))
-  //         }
-  //       })
-  //   }
-
-  const get_page_list = fetch_url => {
-    return new Promise(res => {
-      fetch(fetch_url, fetch_body)
-        .then(res => res.json())
-        .then(({ data }) => {
-          res(data)
-        })
-    })
-  }
-
-  const fetch_ending = () => {
-    set_attraction_list({
-      attraction_list: _attr_list,
-      loading: false,
-    })
-  }
-
-  const loop_fetch = () => {}
-  const get_attraction_list = () => {
-    set_attraction_list({
+  dispatch({
+    type: 'Set_Attr_All_Data',
+    payload: {
       loading: true,
-    })
-    loop_fetch(get_list_url(fetch_time + 1))
-  }
+    },
+  })
+  const { total, data } = await get_page_list(
+    get_list_url(Math.floor(attraction_list.length / page_size) + 1)
+  )
+  const _attraction_list = [...attraction_list, ...data]
 
-  return get_attraction_list
+  dispatch({
+    type: 'Set_Attr_All_Data',
+    payload: {
+      attraction_list: _attraction_list,
+      loading: false,
+      should_fetch: false,
+      is_end: _attraction_list.length >= total,
+    },
+  })
+
+  return null
 }

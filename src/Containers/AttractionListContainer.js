@@ -12,12 +12,13 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => {
   const {
-    attractionList: { attraction_list, loading },
+    attractionList: { attraction_list, loading, should_fetch, is_end },
   } = state
-
   return {
+    should_fetch,
     attraction_list,
     loading,
+    is_end,
   }
 }
 

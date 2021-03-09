@@ -19,7 +19,7 @@ export const usePrevAndNext = ({ attraction_list }) => {
 
   const go_to_prev_attr = () => {
     if (prev_id) {
-      history.push(`/accu/${next_id}`)
+      history.push(`/accu/${prev_id}`)
     } else {
       alert('這是第一個景點囉!')
     }
