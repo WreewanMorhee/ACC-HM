@@ -1,13 +1,11 @@
 import { useContext } from 'react'
 import { ReactReduxContext, useDispatch } from 'react-redux'
+import { useParams } from 'react-router'
 
 const get_list_url = (page = 1) =>
-  !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-    ? `http://localhost:5000/air?page=${page}`
-    : `http://localhost:5000/air?page=5`
+  `https://shiplationbackend.df.r.appspot.com/air?page=${page}`
 
 const page_size = 30
-let max_fetch_time
 
 const get_page_list = fetch_url => {
   return new Promise(res => {
@@ -20,13 +18,16 @@ const get_page_list = fetch_url => {
 }
 
 export const useGetAttractionList = async () => {
+  const { id } = useParams()
   const { store } = useContext(ReactReduxContext)
   const dispatch = useDispatch()
   const {
-    attractionList: { attraction_list, should_fetch, loading },
+    attractionList: { attraction_list, should_fetch, loading, page },
   } = store.getState()
 
-  if (!should_fetch || loading) return
+  if (!should_fetch || loading || id) return
+
+  const new_page = page + 1
 
   dispatch({
     type: 'Set_Attr_All_Data',
@@ -34,9 +35,7 @@ export const useGetAttractionList = async () => {
       loading: true,
     },
   })
-  const { total, data } = await get_page_list(
-    get_list_url(Math.floor(attraction_list.length / page_size) + 1)
-  )
+  const { total, data } = await get_page_list(get_list_url(new_page))
   const _attraction_list = [...attraction_list, ...data]
 
   dispatch({
@@ -46,6 +45,7 @@ export const useGetAttractionList = async () => {
       loading: false,
       should_fetch: false,
       is_end: _attraction_list.length >= total,
+      page: new_page,
     },
   })
 

@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { useParams } from 'react-router'
+import { Redirect, Route, useParams } from 'react-router'
 import './slick.min.css'
 import './slick-theme.min.css'
 import Slider from 'react-slick'
@@ -8,6 +8,7 @@ import BackToList from './BackToList/BackToList'
 import PrevAndNext from './PrevAndNext/PrevAndNext'
 import { usePrevAndNext } from 'Hooks/usePrevAndNext'
 import { useEffect, useRef } from 'react'
+import { useSqueezeTarget } from 'Hooks/useSqueezeTarget'
 
 const settings = {
   dots: true,
@@ -18,7 +19,7 @@ const settings = {
   adaptiveHeight: true,
 }
 
-const Detail = ({ attraction_list = [] }) => {
+const Detail = ({ attraction_list = [], is_end }) => {
   const { id: cur_id } = useParams()
   const {
     name,
@@ -49,7 +50,12 @@ const Detail = ({ attraction_list = [] }) => {
     }
   }, [cur_id])
 
-  if (!name) return <div className={styles['loading']}>拿取資料中...</div>
+  useSqueezeTarget()
+  if (is_end && !name) {
+    alert('查無此筆資料')
+    return <Route path="*" render={() => <Redirect to="/accu" />} />
+  }
+  if (!name) return <div className={styles['loading']}>loading...</div>
 
   return (
     <div className={styles['big-box']}>
