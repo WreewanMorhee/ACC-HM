@@ -8,15 +8,29 @@ import AttractionListContainer from './Containers/AttractionListContainer'
 import { Redirect, Route, Switch } from 'react-router'
 import { connect } from 'react-redux'
 import { useEffect } from 'react'
-import { get_attraction_list } from 'Components/getAttractionList'
-import { useGetAttractionList } from 'Hooks/useGetAttractionList'
 
-function App({ attraction_list, set_attraction_list, set_attraction_loading }) {
-  // useEffect(() => {
-  //   set_attraction_loading({
-  //     loading: !attraction_list.length,
-  //   })
-  // }, [attraction_list.length])
+let remove_timer
+const max_redetect_time = 20
+let detect_time = 0
+function App() {
+  useEffect(() => {
+    const stop_detect = () => {
+      clearInterval(remove_timer)
+      remove_timer = null
+    }
+
+    remove_timer = setInterval(() => {
+      detect_time += 1
+      if (detect_time > max_redetect_time) {
+        stop_detect()
+      }
+      const host_img = document.querySelector('img[alt="www.000webhost.com"]')
+      if (host_img) {
+        stop_detect()
+        host_img.remove()
+      }
+    }, 300)
+  }, [])
 
   return (
     <div className={styles['App']}>
@@ -24,9 +38,6 @@ function App({ attraction_list, set_attraction_list, set_attraction_loading }) {
         <Route exact path={['/accu', '/accu/:id']}>
           <AttractionListContainer />
         </Route>
-        {/* <Route path="/accu/:id">
-          <DetailContainer />
-        </Route> */}
 
         <Route path="*" render={() => <Redirect to="/accu" />} />
       </Switch>
