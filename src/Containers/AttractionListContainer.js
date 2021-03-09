@@ -1,13 +1,16 @@
-import { ReactReduxContext } from 'react-redux'
-import { useContext } from 'react'
+import { connect } from 'react-redux'
 import AttractionList from '../Components/AttractionList'
 
-const AttractionListContainer = () => {
-  const dispatch = useDispatch()
-  const { store } = useContext(ReactReduxContext)
-  const { attractionList } = store.getState()
-
-  return <AttractionList dispatch={dispatch} {...attractionList} />
+const mapStateToProps = state => {
+  const {
+    attractionList: { attraction_list, loading, should_fetch, is_end },
+  } = state
+  return {
+    should_fetch,
+    attraction_list,
+    loading,
+    is_end,
+  }
 }
 
-export default AttractionListContainer
+export default connect(mapStateToProps, null)(AttractionList)

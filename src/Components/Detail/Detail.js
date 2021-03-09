@@ -1,14 +1,14 @@
 import classNames from 'classnames'
-import { Redirect, Route } from 'react-router'
+import { Redirect, Route, useParams } from 'react-router'
+import './slick.min.css'
+import './slick-theme.min.css'
 import Slider from 'react-slick'
-import { usePrevAndNext } from 'Hooks/usePrevAndNext'
-import { useEffect, useRef } from 'react'
-import { useSqueezeTarget } from 'Hooks/useSqueezeTarget'
 import styles from './detail.module.scss'
 import BackToList from './BackToList/BackToList'
 import PrevAndNext from './PrevAndNext/PrevAndNext'
-import './slick.min.css'
-import './slick-theme.min.css'
+import { usePrevAndNext } from 'Hooks/usePrevAndNext'
+import { useEffect, useRef } from 'react'
+import { useSqueezeTarget } from 'Hooks/useSqueezeTarget'
 
 const settings = {
   dots: true,
@@ -19,26 +19,26 @@ const settings = {
   adaptiveHeight: true,
 }
 
-const Detail = ({
-  name,
-  introduction,
-  address,
-  tel,
-  fax,
-  email,
-  official_site,
-  facebook,
-  url,
-  ticket,
-  remind,
-  category,
-  service,
-  friendly,
-  images,
-  cur_id,
-  is_end,
-}) => {
-  const [go_to_prev_attr, go_to_next_attr] = usePrevAndNext()
+const Detail = ({ attraction_list = [], is_end }) => {
+  const { id: cur_id } = useParams()
+  const {
+    name,
+    introduction,
+    address,
+    tel,
+    fax,
+    email,
+    official_site,
+    facebook,
+    url,
+    ticket,
+    remind,
+    category,
+    service,
+    friendly,
+    images,
+  } = attraction_list.find(({ id }) => Number(cur_id) === Number(id)) || {}
+  const [go_to_prev_attr, go_to_next_attr] = usePrevAndNext({ attraction_list })
   const wrapperRef = useRef(null)
 
   useEffect(() => {
