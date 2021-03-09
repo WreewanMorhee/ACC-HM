@@ -1,23 +1,18 @@
+import styles from './list.module.scss'
+import AttrcationCard from './AttrCard/AttrcationCard'
 import { Route } from 'react-router'
 import DetailContainer from 'Containers/DetailContainer'
 import { useGetAttractionList } from 'Hooks/useGetAttractionList'
 import { useRef } from 'react'
-import styles from './list.module.scss'
-import AttrcationCard from './AttrCard/AttrcationCard'
+import { useDispatch } from 'react-redux'
 
 const default_img =
   'https://previews.123rf.com/images/booblgum/booblgum1801/booblgum180100230/93266717-taipei-taiwan-city-skyline-with-gray-buildings-isolated-on-white-background-vector-illustration-busi.jpg'
 
-const AttractionList = ({
-  attraction_list,
-  loading,
-  should_fetch,
-  is_end,
-  dispatch,
-}) => {
-  useGetAttractionList(should_fetch)
+const AttractionList = ({ attraction_list, loading, is_end }) => {
+  useGetAttractionList()
   const listRef = useRef(null)
-
+  const dispatch = useDispatch()
   const scrollToLoad = () => {
     if (
       listRef?.current.scrollTop + window.innerHeight + 200 >=

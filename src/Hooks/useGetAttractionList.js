@@ -5,8 +5,6 @@ import { useParams } from 'react-router'
 const get_list_url = (page = 1) =>
   `https://shiplationbackend.df.r.appspot.com/air?page=${page}`
 
-const page_size = 30
-
 const get_page_list = fetch_url => {
   return new Promise(res => {
     fetch(fetch_url)
@@ -22,7 +20,7 @@ export const useGetAttractionList = async () => {
   const { store } = useContext(ReactReduxContext)
   const dispatch = useDispatch()
   const {
-    attractionList: { attraction_list, should_fetch, loading, page },
+    attractionList: { should_fetch, attraction_list, loading, page },
   } = store.getState()
 
   if (!should_fetch || loading || id) return
