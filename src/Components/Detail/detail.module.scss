@@ -88,6 +88,13 @@ a.site-link {
   height: 100%;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-orange;
+  z-index: 5;
 }
 
 @media (max-width: $phone-width) {

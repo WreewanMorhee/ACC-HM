@@ -9,6 +9,7 @@ const initialState = {
   total: 0,
   is_end: false,
   should_fetch: true,
+  page: 0,
 }
 
 export default handleActions(
