@@ -1,6 +1,12 @@
+import { useContext } from 'react'
+import { ReactReduxContext } from 'react-redux'
 import { useHistory, useParams } from 'react-router'
 
-export const usePrevAndNext = ({ attraction_list }) => {
+export const usePrevAndNext = () => {
+  const { store } = useContext(ReactReduxContext)
+  const {
+    attractionList: { attraction_list },
+  } = store.getState()
   const { id: cur_id } = useParams()
   const history = useHistory()
   const cur_index = attraction_list.findIndex(
